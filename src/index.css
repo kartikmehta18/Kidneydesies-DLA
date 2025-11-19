@@ -1,0 +1,168 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Medical-themed design system for kidney disease classification */
+
+@layer base {
+  :root {
+    --background: 210 20% 98%;
+    --foreground: 210 20% 8%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 20% 8%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 20% 8%;
+
+    /* Medical blue primary color */
+    --primary: 197 100% 48%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Soft medical green */
+    --secondary: 150 60% 95%;
+    --secondary-foreground: 150 60% 15%;
+
+    --muted: 210 20% 96%;
+    --muted-foreground: 210 20% 45%;
+
+    /* Medical accent colors */
+    --accent: 197 100% 96%;
+    --accent-foreground: 197 100% 15%;
+
+    /* Medical red for alerts */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 20% 90%;
+    --input: 210 20% 96%;
+    --ring: 197 100% 48%;
+
+    --radius: 0.75rem;
+
+    /* Medical-specific colors */
+    --medical-success: 142 76% 36%;
+    --medical-warning: 38 92% 50%;
+    --medical-error: 0 84% 60%;
+    --medical-info: 197 100% 48%;
+
+    /* Gradients */
+    --gradient-medical: linear-gradient(135deg, hsl(197 100% 85%), hsl(210 100% 90%));
+    --gradient-hero: linear-gradient(135deg, hsl(197 100% 48%), hsl(210 100% 56%));
+    --gradient-success: linear-gradient(135deg, hsl(142 76% 85%), hsl(150 60% 85%));
+
+    /* Shadows */
+    --shadow-medical: 0 4px 20px -2px hsl(197 100% 48% / 0.15);
+    --shadow-card: 0 8px 25px -5px hsl(210 20% 0% / 0.1);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Enhanced medical gradients */
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(var(--card)) 50%, hsl(197 100% 98%));
+    --gradient-surface: linear-gradient(135deg, hsl(var(--background)), hsl(197 30% 96%));
+    --gradient-accent: linear-gradient(135deg, hsl(197 100% 95%), hsl(210 100% 97%));
+    
+    /* Status gradients */
+    --gradient-error: linear-gradient(135deg, hsl(0 84% 95%), hsl(0 84% 97%));
+    --gradient-warning: linear-gradient(135deg, hsl(38 92% 95%), hsl(38 92% 97%));
+    
+    /* Enhanced shadows */
+    --shadow-glow: 0 0 40px hsl(197 100% 48% / 0.15);
+    --shadow-card-hover: 0 12px 30px -8px hsl(210 20% 0% / 0.15);
+    --shadow-button: 0 4px 12px hsl(197 100% 48% / 0.25);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 210 20% 8%;
+    --foreground: 210 20% 98%;
+
+    --card: 210 20% 12%;
+    --card-foreground: 210 20% 98%;
+
+    --popover: 210 20% 12%;
+    --popover-foreground: 210 20% 98%;
+
+    --primary: 197 100% 58%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 20% 18%;
+    --secondary-foreground: 150 60% 85%;
+
+    --muted: 210 20% 18%;
+    --muted-foreground: 210 20% 65%;
+
+    --accent: 197 100% 20%;
+    --accent-foreground: 197 100% 85%;
+
+    --destructive: 0 84% 65%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 20% 20%;
+    --input: 210 20% 18%;
+    --ring: 197 100% 58%;
+
+    /* Dark mode medical colors */
+    --medical-success: 142 76% 56%;
+    --medical-warning: 38 92% 60%;
+    --medical-error: 0 84% 65%;
+    --medical-info: 197 100% 58%;
+
+    /* Dark mode gradients */
+    --gradient-medical: linear-gradient(135deg, hsl(197 100% 25%), hsl(210 100% 30%));
+    --gradient-hero: linear-gradient(135deg, hsl(197 100% 58%), hsl(210 100% 66%));
+    --gradient-success: linear-gradient(135deg, hsl(142 76% 25%), hsl(150 60% 25%));
+
+    /* Dark mode shadows */
+    --shadow-medical: 0 4px 20px -2px hsl(197 100% 58% / 0.25);
+    --shadow-card: 0 8px 25px -5px hsl(210 20% 0% / 0.4);
+    
+    /* Dark mode enhanced gradients */
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(var(--card)) 50%, hsl(197 100% 15%));
+    --gradient-surface: linear-gradient(135deg, hsl(var(--background)), hsl(197 30% 12%));
+    --gradient-accent: linear-gradient(135deg, hsl(197 100% 15%), hsl(210 100% 18%));
+    
+    /* Dark mode status gradients */
+    --gradient-error: linear-gradient(135deg, hsl(0 84% 20%), hsl(0 84% 25%));
+    --gradient-warning: linear-gradient(135deg, hsl(38 92% 20%), hsl(38 92% 25%));
+    
+    /* Dark mode enhanced shadows */
+    --shadow-glow: 0 0 40px hsl(197 100% 58% / 0.25);
+    --shadow-card-hover: 0 12px 30px -8px hsl(210 20% 0% / 0.5);
+    --shadow-button: 0 4px 12px hsl(197 100% 58% / 0.35);
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
