@@ -15,11 +15,14 @@ const Disclaimer: React.FC = () => {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <p className="text-sm text-muted-foreground leading-relaxed">
-          {t('disclaimerText')} This AI-powered tool provides preliminary analysis 
-          and should always be verified by qualified medical professionals. 
-          Always consult with your healthcare provider for accurate diagnosis and treatment recommendations.
-        </p>
+        <div className="space-y-3 text-sm text-muted-foreground leading-relaxed">
+          <p>
+            {t('disclaimerText')} Think of this experience as a friendly explainer that prepares you for a conversation with a clinician—it is not a diagnosis.
+          </p>
+          <p>
+            If anything here worries you, reach out to your healthcare team or a local urgent care line. Bringing a screenshot or printed copy of the results can make those chats easier.
+          </p>
+        </div>
       </CardContent>
     </Card>
   );

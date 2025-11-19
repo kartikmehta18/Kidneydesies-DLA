@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Upload, X, Image as ImageIcon } from 'lucide-react';
+import { Upload, X, Image as ImageIcon, ShieldCheck, Heart, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { toast } from '@/hooks/use-toast';
@@ -116,8 +116,8 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
               <p className="text-xl font-semibold text-foreground">
                 {t('uploadText')}
               </p>
-              <p className="text-muted-foreground">
-                Drag and drop your CT scan image here, or click to browse
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Take your time—this space is judgement-free. When you upload a CT scan we gently walk you through the findings and never store your file on a server without your consent.
               </p>
               <div className="flex items-center justify-center space-x-4 text-xs text-muted-foreground">
                 <span className="flex items-center">
@@ -135,6 +135,20 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
               <ImageIcon className="mr-2 h-5 w-5" />
               Select CT Scan Image
             </Button>
+            <div className="grid sm:grid-cols-3 gap-3 text-left text-xs text-muted-foreground w-full mt-6">
+              <div className="flex items-start space-x-2 rounded-xl bg-white/60 dark:bg-white/5 p-3 border border-border/60">
+                <ShieldCheck className="h-4 w-4 text-medical-success mt-0.5" />
+                <p>Images stay private on your device until you choose to analyze.</p>
+              </div>
+              <div className="flex items-start space-x-2 rounded-xl bg-white/60 dark:bg-white/5 p-3 border border-border/60">
+                <Heart className="h-4 w-4 text-medical-info mt-0.5" />
+                <p>Friendly language accompanies every result so nothing feels cryptic.</p>
+              </div>
+              <div className="flex items-start space-x-2 rounded-xl bg-white/60 dark:bg-white/5 p-3 border border-border/60">
+                <Clock className="h-4 w-4 text-medical-warning mt-0.5" />
+                <p>Average review takes under a minute—pause anytime you need.</p>
+              </div>
+            </div>
           </div>
         </div>
       ) : (
@@ -177,6 +191,9 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
                   {(selectedImage.size / 1024 / 1024).toFixed(2)} MB
                 </p>
               </div>
+            </div>
+            <div className="mt-4 rounded-lg bg-white/70 dark:bg-white/5 p-4 text-sm text-muted-foreground border border-border/40">
+              We know health updates can bring up emotions. Take a breath, and when you feel ready, continue to the analysis—we’ll translate the findings into clear language.
             </div>
           </div>
         </div>

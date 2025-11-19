@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { CheckCircle, AlertTriangle, Download, Share2 } from 'lucide-react';
+import { CheckCircle, AlertTriangle, Download, Share2, Stethoscope, MessageCircle, Heart } from 'lucide-react';
 
 interface ResultDisplayProps {
   result: 'normal' | 'tumor' | null;
@@ -24,8 +24,34 @@ const ResultDisplay: React.FC<ResultDisplayProps> = ({ result, confidence, onRes
     ? 'border-medical-success shadow-green-100 dark:shadow-green-900/20' 
     : 'border-medical-error shadow-red-100 dark:shadow-red-900/20';
 
+  const guidance = isNormal
+    ? [
+        {
+          title: 'Share the reassurance',
+          description: 'Let your primary care team know about today’s scan so they can log the healthy progress.',
+          icon: Heart,
+        },
+        {
+          title: 'Stay proactive',
+          description: 'Schedule your next check-in when it feels right—early care keeps things calm.',
+          icon: Stethoscope,
+        },
+      ]
+    : [
+        {
+          title: 'Loop-in your clinician',
+          description: 'Send these findings to your doctor so they can review imaging alongside your history.',
+          icon: Stethoscope,
+        },
+        {
+          title: 'Write down questions',
+          description: 'Note how you’re feeling and any symptoms—bringing them to your appointment helps guide the conversation.',
+          icon: MessageCircle,
+        },
+      ];
+
   return (
-    <Card className={`shadow-card-medical transition-all duration-500 animate-slide-in ${cardClass}`}>
+    <Card className={`shadow-card-medical transition-all duration-500 animate-slide-in ${cardClass}`} aria-live="polite">
       <CardHeader>
         <CardTitle className="flex items-center justify-between">
           <span className="flex items-center space-x-2">
@@ -60,6 +86,18 @@ const ResultDisplay: React.FC<ResultDisplayProps> = ({ result, confidence, onRes
               </p>
             </div>
           )}
+
+          <div className="grid md:grid-cols-2 gap-4 text-left">
+            {guidance.map((item, idx) => (
+              <div key={idx} className="flex items-start space-x-3 p-4 rounded-xl border border-border/60 bg-white/80 dark:bg-white/5">
+                <item.icon className={`h-5 w-5 ${isNormal ? 'text-medical-success' : 'text-medical-error'} mt-0.5`} />
+                <div>
+                  <p className="font-medium text-foreground">{item.title}</p>
+                  <p className="text-sm text-muted-foreground">{item.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
 
           <div className="flex flex-wrap gap-3 justify-center">
             <Button variant="outline" size="sm">

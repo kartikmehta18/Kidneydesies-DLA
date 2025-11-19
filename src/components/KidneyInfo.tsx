@@ -37,6 +37,12 @@ const KidneyInfo: React.FC = () => {
     { icon: CheckCircle, text: t('tip4') },
   ];
 
+  const reminders = [
+    'It is okay to ask your care team to repeat information until it feels clear.',
+    'Bringing a friend or family member to appointments can make conversations easier.',
+    'Celebrating small wins—like staying hydrated today—counts as real progress.',
+  ];
+
   return (
     <div className="space-y-8">
       {/* About Section */}
@@ -55,6 +61,9 @@ const KidneyInfo: React.FC = () => {
               <p className="text-muted-foreground leading-relaxed">
                 {t('aboutText')}
               </p>
+              <div className="mt-4 rounded-xl bg-white/80 dark:bg-white/5 p-4 border border-border/60 text-sm text-muted-foreground">
+                Remember: numbers and charts never tell the whole story. Your lived experience matters just as much when discussing kidney health.
+              </div>
             </div>
             <div className="rounded-lg overflow-hidden">
               <img
@@ -132,6 +141,22 @@ const KidneyInfo: React.FC = () => {
           </CardContent>
         </Card>
       </div>
+
+      <Card className="shadow-card-medical border-dashed border-2 border-medical-info/30">
+        <CardHeader>
+          <CardTitle className="text-lg text-medical-info">Gentle Reminders</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ul className="space-y-3 text-muted-foreground text-sm">
+            {reminders.map((reminder, index) => (
+              <li key={index} className="flex items-start space-x-2">
+                <span className="text-medical-info font-semibold">•</span>
+                <span>{reminder}</span>
+              </li>
+            ))}
+          </ul>
+        </CardContent>
+      </Card>
     </div>
   );
 };
