@@ -1,5 +1,5 @@
 import React from 'react';
-import { Moon, Sun, Globe } from 'lucide-react';
+import { Moon, Sun, Globe, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useLanguage, Language } from '@/contexts/LanguageContext';
@@ -24,13 +24,18 @@ const Header: React.FC = () => {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <div className="flex items-center space-x-2">
-          <div className="h-8 w-8 rounded-full bg-gradient-hero flex items-center justify-center">
-            <span className="text-white font-bold text-sm">🧬</span>
+        <div className="flex items-center space-x-3">
+          <div className="h-10 w-10 rounded-full bg-gradient-hero flex items-center justify-center shadow-glow">
+            <span className="text-white font-bold text-base">🧬</span>
           </div>
-          <h1 className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">
-            {t('title')}
-          </h1>
+          <div className="flex flex-col leading-tight">
+            <h1 className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">
+              {t('title')}
+            </h1>
+            <span className="text-xs text-muted-foreground hidden sm:block">
+              A calmer way to interpret kidney scans
+            </span>
+          </div>
         </div>
 
         <div className="flex items-center space-x-2">
@@ -57,6 +62,18 @@ const Header: React.FC = () => {
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
+
+          <Button
+            variant="medical"
+            size="sm"
+            className="hidden md:inline-flex"
+            asChild
+          >
+            <a href="mailto:care@kidneycompanion.com" className="gap-2">
+              <MessageCircle className="h-4 w-4" />
+              Talk to a care coach
+            </a>
+          </Button>
 
           {/* Theme Toggle */}
           <Button

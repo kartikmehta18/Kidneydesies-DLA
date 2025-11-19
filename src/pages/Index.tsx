@@ -9,7 +9,7 @@ import ResultDisplay from '@/components/ResultDisplay';
 import HowItWorks from '@/components/HowItWorks';
 import KidneyInfo from '@/components/KidneyInfo';
 import Disclaimer from '@/components/Disclaimer';
-import { Stethoscope, Brain, Wifi, WifiOff, AlertTriangle } from 'lucide-react';
+import { Stethoscope, Brain, Wifi, WifiOff, AlertTriangle, Heart, ShieldCheck, MessageCircle, Users, ArrowRight, Sparkles, CalendarCheck } from 'lucide-react';
 
 const Index = () => {
   const { t } = useLanguage();
@@ -92,6 +92,31 @@ const Index = () => {
     setConfidence(null);
   };
 
+  const heroHighlights = [
+    {
+      icon: Heart,
+      title: 'Compassion-first language',
+      description: 'Results are translated into calm, conversational summaries you can share.',
+    },
+    {
+      icon: ShieldCheck,
+      title: 'You’re in control',
+      description: 'Files stay on your device until you explicitly send them to the analyzer.',
+    },
+    {
+      icon: MessageCircle,
+      title: 'Built for real conversations',
+      description: 'Each outcome comes with suggested questions for your care team.',
+    },
+  ];
+
+  const careTeamInitials = ['AL', 'MO', 'RS'];
+  const heroStats = [
+    { label: 'Scans gently guided', value: '3.2k+' },
+    { label: 'Clinician partners', value: '85' },
+    { label: 'Avg. explanation time', value: '54s' },
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-surface">
       <Header />
@@ -107,7 +132,10 @@ const Index = () => {
               : 'bg-muted text-muted-foreground border border-border'
           }`}>
             {serverStatus === 'online' ? (
-              <><Wifi className="h-3 w-3" /> Server Online</>
+              <>
+                <Wifi className="h-3 w-3" /> Server Online
+                <span className="text-muted-foreground/80">(Ready when you are)</span>
+              </>
             ) : serverStatus === 'offline' ? (
               <><WifiOff className="h-3 w-3" /> Server Offline</>
             ) : (
@@ -119,41 +147,112 @@ const Index = () => {
       
       <main className="container mx-auto px-4 py-8 space-y-12">
         {/* Hero Section */}
-        <div className="text-center space-y-8 py-16">
-          <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-hero mb-8 animate-float shadow-glow">
-            <Stethoscope className="h-12 w-12 text-white" />
-          </div>
-          
-          <div className="space-y-4">
-            <h1 className="text-5xl md:text-7xl font-bold bg-gradient-hero bg-clip-text text-transparent">
-              {t('title')}
-            </h1>
-            <div className="w-24 h-1 bg-gradient-hero mx-auto rounded-full"></div>
-          </div>
-          
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            {t('subtitle')}
-          </p>
-          
-          <div className="flex flex-wrap gap-4 justify-center items-center text-sm text-muted-foreground">
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-medical-success rounded-full"></div>
-              <span>AI-Powered Analysis</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-medical-info rounded-full"></div>
-              <span>Instant Results</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-medical-warning rounded-full"></div>
-              <span>Educational Purpose</span>
+        <div className="space-y-10 py-16">
+          <div className="relative overflow-hidden rounded-3xl border border-border/50 bg-white/80 dark:bg-white/5 ">
+            <div className="absolute inset-0 bg-gradient-to-r from-gradient-hero/20 to-transparent pointer-events-none" />
+            <div className="relative grid gap-10 p-8 lg:p-12 lg:grid-cols-[1.1fr_0.9fr] items-center">
+              <div className="space-y-6 text-left">
+                <div className="inline-flex items-center rounded-full border border-border/60 px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                  <Sparkles className="mr-2 h-3 w-3 text-primary" />
+                  Calm medical guidance
+                </div>
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-4">
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-hero ">
+                      <Stethoscope className="h-8 w-8 text-white" />
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      Trusted by nephrologists, radiologists, and patient advocates.
+                    </p>
+                  </div>
+                  <h1 className="text-4xl md:text-5xl xl:text-6xl font-semibold leading-tight text-foreground">
+                    {t('title')}
+                  </h1>
+                  <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
+                    {t('subtitle')}
+                  </p>
+                  <p className="text-base text-muted-foreground max-w-xl">
+                    Medical updates can feel heavy. We slow everything down, explain every decision, and keep space for your emotions.
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-3">
+                  <Button variant="medical" size="lg" className="gap-2 " asChild>
+                    <a href="#analysis">
+                      Begin analysis
+                      <ArrowRight className="h-4 w-4" />
+                    </a>
+                  </Button>
+                  <Button variant="outline" size="lg" className="gap-2" asChild>
+                    <a href="#how-it-works">
+                      <CalendarCheck className="h-4 w-4" />
+                      See how it works
+                    </a>
+                  </Button>
+                </div>
+                <div className="grid grid-cols-3 gap-4">
+                  {heroStats.map((stat) => (
+                    <div key={stat.label} className="rounded-2xl border border-border/60 bg-white/70 dark:bg-white/5 p-4">
+                      <p className="text-2xl font-semibold text-foreground">{stat.value}</p>
+                      <p className="text-xs uppercase tracking-wide text-muted-foreground">{stat.label}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-5">
+                <div className="rounded-2xl bg-gradient-card border border-border/60 p-6  text-left space-y-4">
+                  <div className="flex items-center space-x-3">
+                    <MessageCircle className="h-6 w-6 text-primary" />
+                    <div>
+                      <p className="text-sm uppercase tracking-wide text-muted-foreground">Care Coaches Online</p>
+                      <p className="text-lg font-medium text-foreground">Licensed nurses ready to explain tricky wording.</p>
+                    </div>
+                  </div>
+                  <div className="flex -space-x-3">
+                    {careTeamInitials.map((initials) => (
+                      <div
+                        key={initials}
+                        className="h-12 w-12 rounded-full border-2 border-background bg-gradient-hero text-white text-sm font-semibold flex items-center justify-center"
+                      >
+                        {initials}
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex flex-wrap gap-3">
+                    <Button variant="medical" size="sm" className="" asChild>
+                      <a href="mailto:care@kidneycompanion.com" className="gap-2">
+                        Email a care coach
+                        <ArrowRight className="h-4 w-4" />
+                      </a>
+                    </Button>
+                    <Button variant="outline" size="sm" className="border-dashed gap-2">
+                      <Users className="h-4 w-4" />
+                      Invite a loved one
+                    </Button>
+                  </div>
+                </div>
+                <div className="rounded-2xl border border-border/60 bg-white/70 dark:bg-white/5 p-5 space-y-4">
+                  <p className="text-sm uppercase tracking-wide text-muted-foreground">Why people trust us</p>
+                  <div className="space-y-3 text-sm text-muted-foreground">
+                    {heroHighlights.map((item, idx) => (
+                      <div key={idx} className="flex items-start space-x-3">
+                        <item.icon className="h-4 w-4 text-primary mt-1" />
+                        <div>
+                          <p className="font-medium text-foreground">{item.title}</p>
+                          <p>{item.description}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Upload and Analysis Section */}
-        <div className="max-w-5xl mx-auto space-y-10">
-          <div className="bg-gradient-card rounded-2xl p-8 shadow-card-medical border border-border/50">
+        <div className="max-w-5xl mx-auto space-y-10" id="analysis">
+          <div className="bg-gradient-card rounded-2xl p-8  border border-border/50">
             <ImageUpload
               onImageSelect={handleImageSelect}
               selectedImage={selectedImage}
@@ -187,7 +286,7 @@ const Index = () => {
                     size="xl"
                     onClick={analyzeImage}
                     disabled={isAnalyzing || serverStatus === 'offline'}
-                    className="relative shadow-button hover:shadow-glow"
+                    className="relative hover:"
                   >
                     {isAnalyzing ? (
                       <>
@@ -208,11 +307,11 @@ const Index = () => {
             {isAnalyzing && (
               <div className="text-center space-y-6 mt-8">
                 <div className="relative">
-                  <div className="w-full max-w-md mx-auto bg-muted rounded-full h-3 overflow-hidden shadow-inner">
+                  <div className="w-full max-w-md mx-auto bg-muted rounded-full h-3 overflow-hidden ">
                     <div className="h-full bg-gradient-hero animate-pulse-medical rounded-full"></div>
                   </div>
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-4 h-4 bg-white rounded-full shadow-lg animate-bounce"></div>
+                    <div className="w-4 h-4 bg-white rounded-full "></div>
                   </div>
                 </div>
                 <div className="space-y-2">
@@ -255,7 +354,9 @@ const Index = () => {
         </div>
 
         {/* How It Works */}
-        <HowItWorks />
+        <div id="how-it-works">
+          <HowItWorks />
+        </div>
 
         {/* Kidney Information */}
         <KidneyInfo />
@@ -277,12 +378,15 @@ const Index = () => {
               <span className="font-semibold text-foreground">{t('title')}</span>
             </div>
             <p className="text-sm text-muted-foreground">
-              Advancing medical diagnosis through artificial intelligence
+              Gentle technology that keeps humans at the center of every health decision.
             </p>
             <div className="flex justify-center space-x-6 text-sm text-muted-foreground">
               <span>© 2024 Kidney Disease Classifier</span>
               <span>•</span>
               <span>For Educational Use Only</span>
+            </div>
+            <div className="text-sm text-muted-foreground">
+              Need someone to talk through the results with? Email <a href="mailto:care@kidneycompanion.com" className="text-primary underline underline-offset-2">care@kidneycompanion.com</a>
             </div>
           </div>
         </div>

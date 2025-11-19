@@ -15,6 +15,7 @@ const HowItWorks: React.FC = () => {
       description: t('step1Desc'),
       image: medicalLab,
       bgColor: 'from-blue-500/20 to-cyan-500/20',
+      gentleTip: 'You choose the pace—drag, drop, or browse whenever you feel ready.',
     },
     {
       icon: Brain,
@@ -22,6 +23,7 @@ const HowItWorks: React.FC = () => {
       description: t('step2Desc'),
       image: doctorAnalysis,
       bgColor: 'from-purple-500/20 to-pink-500/20',
+      gentleTip: 'We translate technical terms into everyday language so nothing feels overwhelming.',
     },
     {
       icon: FileText,
@@ -29,6 +31,7 @@ const HowItWorks: React.FC = () => {
       description: t('step3Desc'),
       image: medicalLab,
       bgColor: 'from-green-500/20 to-emerald-500/20',
+      gentleTip: 'Results come with next-step suggestions so you always know who to call.',
     },
   ];
 
@@ -38,8 +41,8 @@ const HowItWorks: React.FC = () => {
         <h2 className="text-3xl font-bold bg-gradient-hero bg-clip-text text-transparent mb-4">
           {t('howItWorks')}
         </h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto">
-          Our advanced AI system uses machine learning to analyze CT scan images and provide accurate kidney health assessments.
+        <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          We pair medical-grade AI with compassionate guidance. Every step is designed to feel conversational, transparent, and supportive.
         </p>
       </div>
 
@@ -66,6 +69,9 @@ const HowItWorks: React.FC = () => {
                 {/* Content */}
                 <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
                 <p className="text-muted-foreground mb-4">{step.description}</p>
+                <p className="text-sm text-foreground/70 mb-4 bg-white/70 dark:bg-white/5 rounded-lg p-3 border border-border/40">
+                  {step.gentleTip}
+                </p>
 
                 {/* Image */}
                 <div className="rounded-lg overflow-hidden">
@@ -87,6 +93,12 @@ const HowItWorks: React.FC = () => {
             )}
           </Card>
         ))}
+      </div>
+
+      <div className="mt-12 max-w-3xl mx-auto rounded-2xl border border-border/60 bg-gradient-card p-6 text-center shadow-card-medical">
+        <p className="text-lg font-medium text-foreground">
+          Not sure where to begin? Take a deep breath and start with a single image. You can pause, revisit, or share with a loved one at any time.
+        </p>
       </div>
     </div>
   );
